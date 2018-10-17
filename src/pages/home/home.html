@@ -1,14 +1,67 @@
-<ion-header>
-  <ion-navbar>
-    <ion-title>
-      Ionic Blank
-    </ion-title>
-  </ion-navbar>
+<ion-header class="header">
+    <ion-title class="title" >Employees</ion-title>
 </ion-header>
 
 <ion-content padding>
-  The world is your oyster.
-  <p>
-    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will be your guide.
-  </p>
-</ion-content>
+  <img src="../../assets/imgs/logo3.png">
+  <ion-list>
+    <ion-title class="title2">ADD NEW EMPLOYEE:</ion-title>
+    <ion-item>
+      <ion-label>IdentificationNo:</ion-label>
+      <ion-input type="text" placeholder="IdentificationNo" #employeeID></ion-input>
+     </ion-item>
+        
+         <ion-item>
+          <ion-label> Name:</ion-label>
+          <ion-input type="text" placeholder="name" #employeeName></ion-input>
+         </ion-item>
+  
+         <ion-item>
+          <ion-label>Last Name</ion-label>
+          <ion-input type="text" placeholder="last name" #employeelastName></ion-input>
+        </ion-item>
+  
+        <ion-item>
+          <ion-label>Role:</ion-label>
+          <ion-input type="text" placeholder="role" #employeeRole></ion-input>
+        </ion-item>
+
+        <ion-item>
+            <ion-label>Profile Picture:</ion-label>
+            <ion-input type="file"(change)="insertPic($event)"></ion-input>
+            <!-- <button type="button" ion-button color="primary" (click)="onUpload()" >Upload</button> -->
+          </ion-item>
+     </ion-list>
+     <ion-list>
+      <button ion-button color="green" round (click)="saveData(employeeID.value,employeeName.value,employeelastName.value,employeeRole.value)">Add Employee</button>
+     </ion-list>
+ 
+     <ion-card *ngFor="let emp of signUparr2,let i = index">
+      <ion-list >
+        <ion-item class="items">
+         <h1><b>ID number:</b> {{emp.employeeID}}</h1> 
+        </ion-item>
+     
+        <ion-item class="items">
+         <h1><b>Name:</b> {{emp.employeeName}}</h1> 
+        </ion-item>
+     
+        <ion-item class="items">
+         <h1><b>Lastname:</b> {{emp.employeelastName}}</h1> 
+        </ion-item>
+      
+        <ion-item class="items">
+         <h1><b>Role:</b> {{emp.employeeRole}}</h1> 
+        </ion-item>
+      </ion-list> 
+      <div align="center">
+        <img class="pic" [src]="emp.proPic">
+      </div>
+             
+
+             <!-- Update button -->
+             <button ion-button color="go" round (click)="update(i,employeeID.value,employeeName.value,employeelastName.value,employeeRole.value)">Update</button>
+              <!-- Delete button -->
+             <button ion-button color="danger" round (click)="remove(a)">Remove Employee</button>
+         </ion-card>
+ </ion-content>
